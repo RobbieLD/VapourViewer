@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vv"
         mc:Ignorable="d"
+        SizeChanged="Window_SizeChanged"
         BorderThickness="0"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ScrollViewer Name="scrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Image Source="/2.jpg" Name="imageHolder" Stretch="None" MouseDown="Image_MouseDown"></Image>
+        <ScrollViewer Name="scrollViewer" HorizontalScrollBarVisibility="Auto" ScrollChanged="scrollViewer_ScrollChanged" VerticalScrollBarVisibility="Auto">
+            <Image Name="imageHolder" Stretch="None" MouseDown="Image_MouseDown" MouseUp="imageHolder_MouseUp"></Image>
         </ScrollViewer>
     </Grid>
     <Window.ContextMenu>
@@ -20,6 +21,7 @@
             <MenuItem Header="Change Image" Click="MenuItem_Click_3"></MenuItem>
             <MenuItem Header="Zoom In" Click="MenuItem_Click_4"></MenuItem>
             <MenuItem Header="Zoom Out" Click="MenuItem_Click_5"></MenuItem>
+            <MenuItem Header="Save Settings" Click="MenuItem_Click_6"></MenuItem>
         </ContextMenu>
     </Window.ContextMenu>
 </Window>
