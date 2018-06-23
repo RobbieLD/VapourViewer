@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:vv"
         mc:Ignorable="d"
         SizeChanged="Window_SizeChanged"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
         BorderThickness="0"
         Title="MainWindow" Height="450" Width="800">
     <Grid>

@@ -23,6 +23,7 @@ namespace vv
     public partial class MainWindow : Window
     {
         private double Scale = 1;
+        private double MasterScale = 1;
         private bool ZoomingIn = false;
         private Settings Settings { get; set; }
         private string SettingsPath { get; set; }
@@ -86,21 +87,16 @@ namespace vv
             }
 
             // Load Window Left
-            if (Settings.WindowLeft > 0)
-                Left = Settings.WindowLeft;
+            Left = Settings.WindowLeft;
+            Top = Settings.WindowTop;
+            Width = Settings.WindowWidth;
+            Height = Settings.WindowHeight;
 
-            if (Settings.WindowTop > 0)
-                Top = Settings.WindowTop;
-
-            if (Settings.WindowWidth > 0)
-                Width = Settings.WindowWidth;
-
-            if (Settings.WindowHeight > 0)
-                Height = Settings.WindowHeight;
+            MasterScale = Settings.ZoomLevel == 0 ? 1 : Settings.ZoomLevel;
 
             // Load Zoom Level
             if (Settings.ZoomLevel != 0)
-                imageHolder.Source = new TransformedBitmap(this.imageHolder.Source as BitmapSource, new ScaleTransform(Settings.ZoomLevel, Settings.ZoomLevel));
+                imageHolder.Source = new TransformedBitmap(this.imageHolder.Source as BitmapSource, new ScaleTransform(MasterScale, MasterScale));
 
             if (Settings.ScrollTop > 0)
                 scrollViewer.ScrollToVerticalOffset(Settings.ScrollTop);
@@ -111,7 +107,7 @@ namespace vv
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -180,9 +176,10 @@ namespace vv
             }
 
             Scale += 0.1;
+            MasterScale += 0.1;
             imageHolder.Source = new TransformedBitmap(this.imageHolder.Source as BitmapSource, new ScaleTransform(Scale, Scale));
             ZoomingIn = true;
-            Settings.ZoomLevel = Scale;
+            Settings.ZoomLevel = MasterScale;
         }
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
@@ -193,10 +190,11 @@ namespace vv
             }
 
             Scale += -0.1;
+            MasterScale += -0.1;
             imageHolder.Source = new TransformedBitmap(this.imageHolder.Source as BitmapSource, new ScaleTransform(Scale, Scale));
 
             ZoomingIn = false;
-            Settings.ZoomLevel = Scale;
+            Settings.ZoomLevel = MasterScale;
         }
 
         private void MenuItem_Click_6(object sender, RoutedEventArgs e)
