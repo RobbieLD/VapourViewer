@@ -168,6 +168,14 @@ namespace vv
 
         }
 
+        private void imageHolder_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                //Coords.Content = Top + "," + Left;
+            }
+        }
+
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
             if (!ZoomingIn)
@@ -220,6 +228,23 @@ namespace vv
         {
             Settings.ScrollLeft = scrollViewer.HorizontalOffset;
             Settings.ScrollTop = scrollViewer.VerticalOffset;
+        }
+
+        private void Window_LocationChanged(object sender, EventArgs e)
+        {
+            Coords.Content = Top + "," + Left;
+        }
+
+        private void MenuItem_Click_7(object sender, RoutedEventArgs e)
+        {
+            if (Coords.Visibility == Visibility.Visible)
+            {
+                Coords.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Coords.Visibility = Visibility.Visible;
+            }
         }
     }
 }

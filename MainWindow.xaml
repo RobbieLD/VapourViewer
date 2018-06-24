@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:vv"
         mc:Ignorable="d"
         SizeChanged="Window_SizeChanged"
+        LocationChanged="Window_LocationChanged"
         WindowStyle="None"
         ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True"
@@ -13,8 +14,9 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <ScrollViewer Name="scrollViewer" HorizontalScrollBarVisibility="Auto" ScrollChanged="scrollViewer_ScrollChanged" VerticalScrollBarVisibility="Auto">
-            <Image Name="imageHolder" Stretch="None" MouseDown="Image_MouseDown" MouseUp="imageHolder_MouseUp"></Image>
+            <Image Name="imageHolder" Stretch="None" MouseDown="Image_MouseDown" MouseUp="imageHolder_MouseUp" MouseMove="imageHolder_MouseMove"></Image>
         </ScrollViewer>
+        <Label Name="Coords" Visibility="Hidden" Grid.Column="2" Grid.Row="1" FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Label>
     </Grid>
     <Window.ContextMenu>
         <ContextMenu>
@@ -25,6 +27,7 @@
             <MenuItem Header="Zoom In" Click="MenuItem_Click_4"></MenuItem>
             <MenuItem Header="Zoom Out" Click="MenuItem_Click_5"></MenuItem>
             <MenuItem Header="Save Settings" Click="MenuItem_Click_6"></MenuItem>
+            <MenuItem Header="Toggle Coordinates" Click="MenuItem_Click_7"></MenuItem>
         </ContextMenu>
     </Window.ContextMenu>
 </Window>
